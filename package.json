@@ -1,0 +1,23 @@
+{
+  "name": "wxwork-robot",
+  "version": "0.1.0",
+  "description": "",
+  "author": "z3rog <zerotoherorg@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "notify": "clear && node -r esm index.js"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "esm": "^3.2.25",
+    "figlet": "^1.2.4",
+    "inquirer": "^7.0.0"
+  }
+}
