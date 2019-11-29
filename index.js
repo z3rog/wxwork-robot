@@ -1,13 +1,13 @@
 import notify from './notify'
-
-const inquirer = require('inquirer')
-const chalk = require('chalk')
-const figlet = require('figlet')
-const fs = require('fs')
+import { isSupportImageFile } from './util'
+import inquirer from 'inquirer'
+import chalk from 'chalk'
+import figlet from 'figlet'
+import fs from 'fs'
 
 const init = () => {
   console.log(
-    chalk.green(
+    chalk.bold.cyan(
       figlet.textSync('Z3ROG-BOT', {
         font: 'Star Wars',
         horizontalLayout: 'default',
@@ -15,9 +15,15 @@ const init = () => {
       })
     )
   )
+  console.log(
+    chalk.bold.cyan('Please tell me want you want to do...')
+  )
 }
 const askQuestions = () => {
-  const imageList = fs.readdirSync(__dirname + '/images')
+  const imageList = fs
+    .readdirSync(__dirname + '/images')
+    .filter(name => isSupportImageFile(name))
+
   const questions = [
     {
       name: 'msgtype',
@@ -52,7 +58,7 @@ const askQuestions = () => {
   return inquirer.prompt(questions)
 }
 
-const success = msg => {
+const success = () => {
   console.log(
     chalk.white.bgGreen.bold(msg)
   )
@@ -73,4 +79,5 @@ const run = async () => {
     success('Succesfully sent robot message!')
   }
 }
+
 run()

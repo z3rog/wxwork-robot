@@ -3,7 +3,7 @@ import {
   MENTION_MAP,
   TEXT_DEFAULT_CONFIG,
   IMAGE_DEFAULT_CONFIG
-} from './variable'
+} from '../variables'
 import lodash from 'lodash'
 
 const crypto = require('crypto')

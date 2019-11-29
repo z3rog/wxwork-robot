@@ -18,3 +18,10 @@ export const IMAGE_DEFAULT_CONFIG = {
   msgtype: 'image',
   imgUrl: './images/test.png'
 }
+
+export const IMAGE_SUPPORT_FORMAT = [
+  '.jpg',
+  '.jpeg',
+  '.png',
+  '.gif'
+]
