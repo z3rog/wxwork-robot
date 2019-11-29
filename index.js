@@ -1,4 +1,4 @@
-import notify from './notify.js'
+import notify from './notify'
 
 const inquirer = require('inquirer')
 const chalk = require('chalk')
@@ -33,7 +33,7 @@ const askQuestions = () => {
       when: answers => answers.msgtype === 'text'
     },
     {
-      name: 'mentionPersion',
+      name: 'mentionPerson',
       type: 'list',
       message: 'Whom do u want to mention?',
       choices: ['Nobody', '彭鸿', '余梓韩', '潘倩萍', 'ALL'],

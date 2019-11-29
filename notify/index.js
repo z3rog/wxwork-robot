@@ -10,13 +10,12 @@ const crypto = require('crypto')
 const fs = require('fs')
 const axios  = require('axios')
 
-const genConfig = ({ 
+const processMsgConfig = ({ 
   msgtype = 'text', 
   msg, 
   mentionPerson,
   md5,
-  base64,
-  otherOpt
+  base64
 }) => ({
   msgtype,
   [msgtype]: {
@@ -25,13 +24,7 @@ const genConfig = ({
       ? [MENTION_MAP[mentionPerson]]
       : undefined,
     md5: msgtype === 'image' ? md5 : undefined,
-    base64: msgtype === 'image'? base64 : undefined,
-    articles: msgtype === 'news'
-      ? [{
-        ...otherOpt,
-        url: 'data:image/png;base64,' + base64
-      }]
-      : undefined
+    base64: msgtype === 'image'? base64 : undefined
   }
 })
 
@@ -41,9 +34,9 @@ const handleConfig = (config) => {
     const data = fs.readFileSync(imgUrl)
     const base64 = data.toString('base64')
     const md5 = crypto.createHash('md5').update(data).digest('hex')
-    return genConfig({ ...config, base64, md5 })
+    return processMsgConfig({ ...config, base64, md5 })
   }
-  return genConfig(config)
+  return processMsgConfig(config)
 }
 
 const getDefaultConfig = ({ msgtype }) => {
@@ -57,13 +50,13 @@ const getDefaultConfig = ({ msgtype }) => {
 }
 
 const notify = async rawConfig => {
-  const config = handleConfig(
+  const finalConfig = handleConfig(
     lodash.merge(
       getDefaultConfig(rawConfig),
       rawConfig
     )
   )
-  return axios.post(BASE_URL, config)
+  return axios.post(BASE_URL, finalConfig)
 }
 
 export default notify
