@@ -19,6 +19,7 @@ const init = () => {
     chalk.bold.cyan('Please tell me want you want to do...')
   )
 }
+
 const askQuestions = () => {
   const imageList = fs
     .readdirSync(__dirname + '/images')
@@ -58,11 +59,12 @@ const askQuestions = () => {
   return inquirer.prompt(questions)
 }
 
-const success = () => {
+const success = (msg) => {
   console.log(
     chalk.white.bgGreen.bold(msg)
   )
 }
+
 const run = async () => {
   // show script introduction
   init()
@@ -76,7 +78,7 @@ const run = async () => {
     errmsg === 'ok'
   ) {
     // show success message
-    success('Succesfully sent robot message!')
+    success(`   Succesfully sent robot message!   `)
   }
 }
 
