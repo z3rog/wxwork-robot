@@ -30,14 +30,14 @@ const askQuestions = () => {
       name: 'msgtype',
       type: 'list',
       message: 'What type of information you need to send?',
-      choices: ['text', 'image'],
+      choices: ['text', 'image', 'news'],
       default: 'text'
     },
     {
       name: 'msg',
       type: 'input',
       message: 'Input text content you need to send.',
-      when: answers => answers.msgtype === 'text'
+      when: ({ msgtype }) => msgtype === 'text'
     },
     {
       name: 'mentionPerson',
@@ -45,14 +45,34 @@ const askQuestions = () => {
       message: 'Whom do u want to mention?',
       choices: ['Nobody', '彭鸿', '余梓韩', '潘倩萍', 'ALL'],
       default: 'Nobody',
-      when: answers => answers.msgtype === 'text'
+      when: ({ msgtype }) => msgtype === 'text'
     },
     {
-      name: 'imgUrl',
+      name: 'title',
+      type: 'input',
+      message: 'Please input title of your news.',
+      validate: val => !!val,
+      when: ({ msgtype }) => msgtype === 'news'
+    },
+    {
+      name: 'description',
+      type: 'input',
+      message: 'Please input description of your news.(press return key to skip)',
+      when: ({ msgtype }) => msgtype === 'news'
+    },
+    {
+      name: 'url',
+      type: 'input',
+      message: 'Please input url to jump when news clicked.',
+      validate: val => !!val,
+      when: ({ msgtype }) => msgtype === 'news'
+    },
+    {
+      name: 'imgPath',
       type: 'list',
       message: 'Select the image you want to send.',
       choices: ['Default', ...imageList],
-      when: answers => answers.msgtype === 'image',
+      when: ({ msgtype }) => ['image', 'news'].includes(msgtype),
       filter: val => val === 'Default' ? undefined : `./images/${val}`
     }
   ]
