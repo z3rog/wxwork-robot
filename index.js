@@ -85,6 +85,12 @@ const success = (msg) => {
   )
 }
 
+const fail = msg => {
+  console.log(
+    chalk.white.bgRed.bold(msg)
+  )
+}
+
 const run = async () => {
   // show script introduction
   init()
@@ -92,13 +98,17 @@ const run = async () => {
   const answers = await askQuestions()
   // send notify request
   const { status, data: { errcode, errmsg }} = await notify(answers)
-  if (
-    status === 200 &&
-    errcode === 0 &&
-    errmsg === 'ok'
-  ) {
-    // show success message
-    success(`   Succesfully sent robot message!   `)
+  if (status === 200) {
+    if (
+      errcode === 0 &&
+      errmsg === 'ok'
+    ) {
+      // show success message
+      success(`   Succesfully sent robot message!   `)
+    } else {
+      // show fail message
+      fail(`   Error: ${errmsg.split(',')[0]}, please try again.   `)
+    }
   }
 }
 
