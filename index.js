@@ -1,4 +1,5 @@
 import notify from './notify'
+import callbackDep from './processor/callbackDep'
 import { isSupportImageFile } from './util'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
@@ -105,6 +106,8 @@ const run = async () => {
     ) {
       // show success message
       success(`   Succesfully sent robot message!   `)
+      // if have callback handler, call all
+      callbackDep.callAll()
     } else {
       // show fail message
       fail(`   Error: ${errmsg.split(',')[0]}, please try again.   `)
