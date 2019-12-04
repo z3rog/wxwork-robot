@@ -28,7 +28,7 @@ const prepare = imgPath => {
 const callbackDepItemGenerator = (mac, config, key, options) => {
   const { scope: bucketName } = options
   const bucketManager = new Qiniu.rs.BucketManager(mac, config)
-  const dep = async () => {
+  const dep = async() => {
     return new Promise((resolve, reject) => {
       // delay 500 is an experience value
       setTimeout(() => {
@@ -64,7 +64,7 @@ const qiniuCallbackGenerator = (resolve, reject) => {
     if (resErr) {
       reject({ success: false, resErr })
     }
-    if (resInfo.statusCode == 200) {
+    if (resInfo.statusCode === 200) {
       resolve({ success: true, data: resBody })
     } else {
       reject({ success: false, data: resInfo })

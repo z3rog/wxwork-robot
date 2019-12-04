@@ -14,7 +14,7 @@ class CallbackDep {
       }
       finally {
         this.deps.splice(i, 1)
-        i --
+        i--
       }
     }
   }

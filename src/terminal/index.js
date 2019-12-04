@@ -5,6 +5,7 @@ import inquirer from 'inquirer'
 import chalk from 'chalk'
 import figlet from 'figlet'
 import fs from 'fs'
+import path from 'path'
 
 const init = () => {
   console.log(
@@ -23,7 +24,7 @@ const init = () => {
 
 const askQuestions = () => {
   const imageList = fs
-    .readdirSync(__dirname + '/images')
+    .readdirSync(path.resolve(__dirname, 'images'))
     .filter(name => isSupportImageFile(name))
 
   const questions = [
@@ -74,7 +75,7 @@ const askQuestions = () => {
       message: 'Select the image you want to send.',
       choices: ['Default', ...imageList],
       when: ({ msgtype }) => ['image', 'news'].includes(msgtype),
-      filter: val => val === 'Default' ? undefined : `./images/${val}`
+      filter: val => val === 'Default' ? undefined : `./src/terminal/images/${val}`
     }
   ]
   return inquirer.prompt(questions)
@@ -92,7 +93,7 @@ const fail = msg => {
   )
 }
 
-const run = async () => {
+const run = async() => {
   // show script introduction
   init()
   // ask questions
