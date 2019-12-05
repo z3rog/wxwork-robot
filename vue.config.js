@@ -5,5 +5,13 @@ module.exports = {
       template: 'src/web/public/index.html',
       filename: 'index.html'
     }
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        sourceMap: true,
+        javascriptEnabled: true
+      }
+    }
   }
 }
