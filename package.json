@@ -3,31 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "author": "z3rog <zerotoherorg@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "notify": "clear && node -r esm src/terminal/index.js",
-    "commit": "git add . && git-cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "commit": "git add . && git-cz",
+    "notify": "clear && node -r esm src/terminal/index.js"
   },
   "dependencies": {
     "core-js": "^3.4.3",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vuetify": "^2.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
@@ -47,10 +33,29 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "qiniu": "^7.2.2",
-    "vue-template-compiler": "^2.6.10"
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "vue-cli-plugin-vuetify": "^2.0.2",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.3.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
 }

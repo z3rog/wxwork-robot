@@ -1,5 +1,4 @@
 class CallbackDep {
-
   constructor() {
     this.deps = []
   }
@@ -8,11 +7,10 @@ class CallbackDep {
     for (let i = 0; i < this.deps.length; i++) {
       try {
         await this.deps[i]()
-      }
-      catch (e) {
-        console.log(e)
-      }
-      finally {
+      } catch (e) {
+        // console.log(e)
+        throw new Error(e)
+      } finally {
         this.deps.splice(i, 1)
         i--
       }
